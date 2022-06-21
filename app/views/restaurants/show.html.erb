@@ -1,0 +1,46 @@
+<section>
+  <div
+    class="banner d-flex align-items-center justify-content-center text-white"
+    style="background-image: url('<%= @restaurant.image_url%>')">
+    <h1 class="text-center bg-danger p-3 text-white rounded "><%= @restaurant.name %></h1>
+  </div>
+</section>
+<section>
+  <div class="container mt-3">
+    <div class="text-end mt-1">
+      <%= link_to "Back", restaurants_path, class: "text-decoration-none" %>
+    </div>
+    <div class="row p-4 ">
+      <div class="col-12 col-md-8">
+        <div class="bg-white border rounded shadow p-3">
+          <h3>Restaurant informations</h3>
+          <div>
+            <p>Name : <span class="text-muted"> <%= @restaurant.name %></span></p>
+            <p>Address : <span class="text-muted"> <%= @restaurant.address %></span></p>
+            <p>Phone number : <span class="text-muted"> <%= @restaurant.phone_number %></span></p>
+            <p>Category : <span class="text-muted"> <%= @restaurant.category %></span></p>
+          </div>
+        </div>
+        <div class="bg-light border rounded shadow p-3 my-3">
+          <% @restaurant.reviews.each do |review|  %>
+              <div>
+                <% review.rating.times do %>
+                  <%=  image_tag "Star.png", height:15, width:15, class: "align-middle lh-sm"  %>
+                <% end %>
+                <div class="lh-sm text12 align-middle">le : <%= review.created_at.strftime("%d/%m/%Y") %></div>
+                <p class="fw-light lh-sm text12 mt-1"><%= review.content %></p>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class=" bg-white border rounded shadow p-3">
+          <%= render 'reviews/form' %>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,33 @@
+<div class="container mb-5">
+  <div class="h1 pt-5">Liste des restaurants</div>
+  <div class="text-end mt-5">
+  <%= link_to "Ajouter un nouveau restaurant", new_restaurant_path, class: "text-decoration-none" %>
+  </div>
+  <div class="row">
+    <% @restaurants.each do |restaurant|%>
+    <div class="col-12 col-md-6 col-lg-4 g-4">
+      <div class="card h-100 position-relative">
+        <!-- Image d'illustration -->
+        <img
+          src="<%= restaurant.image_url %>"
+          class="card-img-top h-50"
+          alt="<%= restaurant.name %>">
+        <div class="position-absolute bg-danger top-44 end-10 text-white p-2 rounded-pill">
+          <%= restaurant.category %>
+        </div>
+        <!-- Corps -->
+        <div class="card-body mt-2">
+            <h5 class="card-title text-start fw-bold"><%= restaurant.name %></h5>
+            <h6 class="card-subtitle text-muted mt-3"><%= restaurant.address %></h6>
+        </div>
+        <!-- Pied -->
+        <div class="card-footer p-0">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-end"><%= link_to "En savoir plus", restaurant_path(restaurant), class: "card-link text-end text-decoration-none"  %></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
